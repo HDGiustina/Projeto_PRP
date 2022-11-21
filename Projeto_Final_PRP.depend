@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1668993115 source:c:\users\julio\documents\helena\prp - 2022\projeto_final_prp\main.c
+	<stdio.h>
+	<stdlib.h>
+	<locale.h>
+
