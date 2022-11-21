@@ -52,13 +52,12 @@ int main()
                         printf("\nOpção: ");
                         scanf("%d", &tijolo);
 
-                        if(tijolo < 1 || tijolo > 3){
+                        if(tijolo < 1 || tijolo > 3){ // Confere se o usuário não digitou opção inválida
                             printf("\nOpção inválida!\n");
                             break;
                         } else
-                            qtd = calTijolo(larg, comp, tijolo);
+                            qtd = calTijolo(larg, comp, tijolo); // Chama a função para cálculo da quantidade de tijolos
 
-                        printf("\npassou\n");
                         matriz[0][0] = tijolo;
                         matriz[0][1] = qtd;
                     break;
