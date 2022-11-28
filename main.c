@@ -21,6 +21,12 @@ int main()
 
     //Aqui colocar uma introdução para o programa
 
+    printf("\n\t\t\t\t\t\t>>> BUILDPLANNER <<<");
+
+    printf("\n\nBem-vindo(a) ao programa que calcula uma estimativa da quantidade dos principais materiais que serão utilizados na construção de um cômodo!");
+    printf("\nInforme a largura e o comprimento do cômodo, insira os tipos de materiais e ao final consulte a matriz que informará as quantidades estimadas!");
+
+    printf("\n\n************************************************************************************************************************");
 
     //Inicialização da Matriz
     for(i = 0;i < L;i++){
@@ -34,16 +40,18 @@ int main()
     }
 
     //Entrada de dados
-    printf("\nInforme a largura, em metros, do cômodo o qual deseja cálcular os materiais necessários para construir: ");
+    printf("\n\n>> Informe a largura, em metros, do cômodo o qual deseja cálcular os materiais necessários para construir: ");
     scanf("%f", &larg);
-    printf("\nAgora informe o comprimento, em metros, do cômodo: ");
+    printf("\n>> Agora informe o comprimento, em metros, do cômodo: ");
     scanf("%f", &comp);
+
+    printf("\n----------------------------------------------------------------------------------------------------------------");
 
     // Calcula o metro quadrado
     m2 = metrosQuadrados(larg, comp);
 
     //Menu
-    printf("\n>> O que você deseja fazer? ");
+    printf("\n\n>> O que você deseja fazer? ");
     printf("\n1. Inserir material para cálculo,");
     printf("\n2. Remover material do cálculo,");
     printf("\n3. Alterar material,");
@@ -55,6 +63,8 @@ int main()
     scanf("%d", &menu);
 
     while(menu != 7){
+        printf("\n----------------------------------------------------------------------------------------------------------------");
+
         switch(menu){
             case 1: //Inserir
                 printf("\n\n>> Qual material você deseja inserir?");
@@ -80,7 +90,7 @@ int main()
                             scanf("%d", &tijolo);
 
                             if(tijolo < 1 || tijolo > 3){ // Confere se o usuário não digitou opção inválida
-                                printf("\nXXX Opção inválida! XXX\n");
+                                printf("\n\nXXX Opção inválida! XXX\n");
                                 break;
                             } else{
                                 qtd = calTijolo(m2, tijolo); // Chama a função para cálculo da quantidade de tijolos
@@ -202,7 +212,7 @@ int main()
                     break;
                 }
             break;
-            case 3: //Alterar
+            case 3: //Alterar material
                 printf("\n\n>> Qual material você deseja alterar?");
                 printf("\n1- Tijolo");
                 printf("\n2- Telha");
@@ -290,9 +300,9 @@ int main()
                 }
             break;
             case 4: //Alterar metragem
-                printf("\nInforme a nova largura, em metros, do cômodo o qual deseja cálcular os materiais necessários para construir: ");
+                printf("\n\n++ Informe a nova largura, em metros, do cômodo o qual deseja cálcular os materiais necessários para construir: ");
                 scanf("%f", &larg);
-                printf("\nAgora informe o novo comprimento, em metros, do cômodo: ");
+                printf("\n++ Agora informe o novo comprimento, em metros, do cômodo: ");
                 scanf("%f", &comp);
 
                 m2 = metrosQuadrados(larg, comp); // Cálcula o novo metro quadrado
@@ -310,9 +320,7 @@ int main()
                     matriz[2][2] = qtd;
                 }
 
-                printf("\n\nA matriz foi atualizada conforme a mudança de metragem do cômodo!");
-                printf("\nSe deseja mudar algum tipo de material, selecione a opção 3,");
-                printf("\nSe deseja visualizar a nova matriz, selecione a opção 5!");
+                printf("\n\n>> A matriz foi atualizada conforme a mudança de metragem do cômodo!\n");
             break;
             case 5: //Consultar
                 imprimirMatriz(matriz, m2);
@@ -338,13 +346,15 @@ int main()
             if(matriz[1][1] != 0){
                 printf("o tipo de telha, ");
             }
-            if(matriz[1][2] != 0){
+            if(matriz[2][2] != 0){
                 printf("o tipo de piso, ");
             }
             printf("mas ainda falta cadastrar material!\n");
         }
 
-        printf("\n>> O que você deseja fazer? ");
+        printf("\n----------------------------------------------------------------------------------------------------------------");
+
+        printf("\n\n>> O que você deseja fazer? ");
         printf("\n1. Inserir material para cálculo,");
         printf("\n2. Remover material do cálculo,");
         printf("\n3. Alterar material,");
@@ -355,9 +365,10 @@ int main()
         printf("\nOpção: ");
         scanf("%d", &menu);
     }
+    printf("\n**************************************************************************************************************");
 
-    printf("\nEsperamos que você tenha gostado da experiência!");
-    printf("\n\t\tAté a próxima :)\n");
+    printf("\n\n\t\t\t\tEsperamos que você tenha gostado da experiência!");
+    printf("\n\t\t\t\t\t\tAté a próxima :)\n");
 }
 float metrosQuadrados(float larg, float comp){
     return larg * comp;
@@ -407,8 +418,6 @@ void imprimirMatriz(float M[][C], float m2){
 
 void imprimirInfos(){ //Imprime as informações dos desenvolvedores
 
-    printf("\n\n------------------------------------------------------------------------------------------------------------");
-
     printf("\n\n >> OBJETIVO DO PROGRAMA:\n");
     printf("\nFacilitar a vida de quem deseja construir um cômodo, o programa faz uma estimativa da quantidade dos principais materiais que serão utilizados na construção.");
 
@@ -421,9 +430,8 @@ void imprimirInfos(){ //Imprime as informações dos desenvolvedores
     printf("\nHelena Della Giustina Aguiar ");
     printf("\nLucas Munhoz");
 
-    printf("\n\n------------------------------------------------------------------------------------------------------------");
+    printf("\n\n+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 
     printf("\n\n\t\t\t\t\t\tNOVEMBRO/2022");
     printf("\n\t\t\t\tUniversidade de Santa Cruz do Sul (UNISC)\n");
-
 }
