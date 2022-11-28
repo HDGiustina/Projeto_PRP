@@ -289,8 +289,30 @@ int main()
                         printf("\nXXX Opção inválida! XXX\n");
                 }
             break;
-            case 4:
-                //Alterar metragem
+            case 4: //Alterar metragem
+                printf("\nInforme a nova largura, em metros, do cômodo o qual deseja cálcular os materiais necessários para construir: ");
+                scanf("%f", &larg);
+                printf("\nAgora informe o novo comprimento, em metros, do cômodo: ");
+                scanf("%f", &comp);
+
+                m2 = metrosQuadrados(larg, comp); // Cálcula o novo metro quadrado
+
+                if(matriz[0][1] != 0){ // Verifica se o usuário já cadastrou o tijolo
+                    qtd = calTijolo(m2, tijolo); // Atualiza a quantidade de material após a mudança de metragem do cômodo
+                    matriz[0][2] = qtd;
+                }
+                if(matriz[1][1] != 0){ // Verifica se o usuário já cadastrou a telha
+                    qtd = calTelha(m2, telha); // Atualiza a quantidade de material após a mudança de metragem do cômodo
+                    matriz[1][2] = qtd;
+                }
+                if(matriz[2][1] != 0){ // Verifica se o usuário já cadastrou o piso
+                    qtd = calPiso(m2, piso); // Atualiza a quantidade de material após a mudança de metragem do cômodo
+                    matriz[2][2] = qtd;
+                }
+
+                printf("\n\nA matriz foi atualizada conforme a mudança de metragem do cômodo!");
+                printf("\nSe deseja mudar algum tipo de material, selecione a opção 3,");
+                printf("\nSe deseja visualizar a nova matriz, selecione a opção 5!");
             break;
             case 5: //Consultar
                 imprimirMatriz(matriz, m2);
@@ -321,7 +343,6 @@ int main()
             }
             printf("mas ainda falta cadastrar material!\n");
         }
-
 
         printf("\n>> O que você deseja fazer? ");
         printf("\n1. Inserir material para cálculo,");
