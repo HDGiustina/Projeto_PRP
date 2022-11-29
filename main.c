@@ -411,9 +411,61 @@ float calPiso(float m2, int piso){
     return qtd;
 }
 
-void imprimirMatriz(float M[][C], float m2){
+void imprimirMatriz(float M[][C], float m2)
+{
+    printf("\n\n\n\t\t\t   >> MATRIZ RESULTANTE <<");
 
-    // Aqui irá a a impressão da matriz com as quantidades
+    printf("\n\n\n\t\t  Material  |  Tipo do Material | Quantidade ");
+    printf("\n\t\t ------------------------------------------- ");
+    for(int i=0; i<3; i++) // Percorre as linha
+    {
+        if (M[i][0] == 1) // Mostra as informações da primeira linha da matriz
+        {
+            printf("\n\t\t   Tijolos  |");
+            // Mostra qual tipo de tijolo foi selecionado
+            if (M[i][1] == 1)
+                printf("      Vedação      ");
+            else if (M[i][1] == 2)
+                printf("     Estrutural    ");
+            else if (M[i][1] == 3)
+                printf(" Bloco de concreto ");
+
+            // Mostra a quantidade cálculada no programa
+            printf("|     %.0f    ", M[i][2]);
+        }
+        else if (M[i][0] == 2) // Mostra as informações da segunda linha da matriz
+        {
+            printf("\n\t\t            |                   |            ");
+            printf("\n\t\t   Telhas   |");
+            //mostra qual tipo de telha foi selecionada
+            if (M[i][1] == 1)
+                printf("     Colonial      ");
+            else if (M[i][1] == 2)
+                printf("    Portuguesa     ");
+            else if (M[i][1] == 3)
+                printf("     Brasilit      ");
+
+            // Mostra a quantidade cálculada no programa
+            printf("|     %.0f    ", M[i][2]);
+        }
+        else if (M[i][0] == 3) // Mostra as informações da terceira linha da matriz
+        {   printf("\n\t\t            |                   |            ");
+            printf("\n\t\t    Pisos   |");
+            //mostra qual tipo de piso foi selecionado
+            if (M[i][1] == 1)
+                printf("    Porcelanato    ");
+            else if (M[i][1] == 2)
+                printf("     Laminado      ");
+
+            // Mostra a quantidade cálculada no programa
+            printf("|     %.0f     ", M[i][2]);
+        }
+    }
+
+    printf("\n\n\n\n>> Os cálculos foram baseados em um cômodo com %.2f metros quadrados!", m2);
+
+
+    printf("\n\n\n----------------------------------------------------------------------------------------------------------------");
 }
 
 void imprimirInfos(){ //Imprime as informações dos desenvolvedores
