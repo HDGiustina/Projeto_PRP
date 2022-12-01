@@ -19,12 +19,12 @@ int main()
     int i, j, inicial = 1, cont = 0;
     float matriz[L][C], larg, comp, qtd, m2;
 
-    //Aqui colocar uma introdução para o programa
+    //Introdução para o programa
 
     printf("\n\t\t\t\t\t\t>>> BUILDPLANNER <<<");
 
-    printf("\n\nBem-vindo(a) ao programa que calcula uma estimativa da quantidade dos principais materiais que serão utilizados na construção de um cômodo!");
-    printf("\nInforme a largura e o comprimento do cômodo, insira os tipos de materiais e ao final consulte a matriz que informará as quantidades estimadas!");
+    printf("\n\nOlá, seja bem-vindo(a)!\nVamos estimar a quantidade dos principais materiais que serão necessários para a construção de um cômodo.");
+    printf("\n\nPara iniciarmos, precisaremos calcular a área do local que será construída.\nInforme qual a largura e o comprimento do cômodo e deixe que o cálculo da área é por nossa conta!");
 
     printf("\n\n************************************************************************************************************************");
 
@@ -40,9 +40,9 @@ int main()
     }
 
     //Entrada de dados
-    printf("\n\n>> Informe a largura, em metros, do cômodo o qual deseja cálcular os materiais necessários para construir: ");
+    printf("\n\n>> Qual é a largura, em metros, do cômodo que será construído? ");
     scanf("%f", &larg);
-    printf("\n>> Agora informe o comprimento, em metros, do cômodo: ");
+    printf("\n>> Certo! E qual é o comprimento, também em metros, do cômodo? ");
     scanf("%f", &comp);
 
     printf("\n----------------------------------------------------------------------------------------------------------------");
@@ -50,8 +50,12 @@ int main()
     // Calcula o metro quadrado
     m2 = metrosQuadrados(larg, comp);
 
+    // INFORMA AO USUÁRIO A METRAGEM DO CÔMODO
+    printf("\nSegundo meus cálculos, você deseja construir um cômodo medindo %.1f metros quadrados.\nVocê poderá alterar essa metragem mais tarde, caso deseje, selecionando a opção 4 em nosso menu principal.", m2);
+
+
     //Menu
-    printf("\n\n>> O que você deseja fazer? ");
+    printf("\n\n>> Como podemos lhe ajudar?\n");
     printf("\n1. Inserir material para cálculo,");
     printf("\n2. Remover material do cálculo,");
     printf("\n3. Alterar material,");
@@ -59,7 +63,7 @@ int main()
     printf("\n5. Consultar matriz dos cálculos,");
     printf("\n6. Ver informações dos desenvolvedores,");
     printf("\n7. Sair;");
-    printf("\nOpção: ");
+    printf("\n\nDigite qual das opções você deseja executar: ");
     scanf("%d", &menu);
 
     while(menu != 7){
@@ -67,7 +71,7 @@ int main()
 
         switch(menu){
             case 1: //Inserir
-                printf("\n\n>> Qual material você deseja inserir?");
+                printf("\n\n>> Certo! Qual é o tipo de material que você deseja inserir?");
                 printf("\n1- Tijolo");
                 printf("\n2- Telha");
                 printf("\n3- Piso");
@@ -76,17 +80,18 @@ int main()
 
                 switch(material){
                     case 1: // Tijolo
-                        if(matriz[0][1] != 0){ // Verifica se o usuário não cadastrou o material
+                        if(matriz[0][1] != 0){ // Verifica se o usuário já cadastrou o material
                             printf("\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
                             printf("\n\n\t\t\t\tERRO!!");
-                            printf("\nVocê não pode atualizar um material que ainda não foi cadastrado!\n");
+                            printf("\nEsse material já foi cadastrado!\nVocê pode alterar o material selecionando a opção 3 no menu.\n");
                             printf("\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n");
                         } else{
-                            printf("\n\n>> Qual o tipo de tijolo que você deseja?");
+                            printf("\n\nO tamanho de um tijolo varia de acordo com o seu tipo. Para que nosso cálculo seja mais assertivo, informe qual tipo de tijolo você pretende utilizar na construção do cômodo.");
+                            printf("\n\n>> Qual dos tipos de telha você deseja utilizar?");
                             printf("\n1- Vedação,");
                             printf("\n2- Estrutural,");
                             printf("\n3- Bloco de concreto,");
-                            printf("\nOpção: ");
+                            printf("\nDigite sua opção: ");
                             scanf("%d", &tijolo);
 
                             if(tijolo < 1 || tijolo > 3){ // Confere se o usuário não digitou opção inválida
@@ -97,21 +102,23 @@ int main()
                                 matriz[0][1] = tijolo;
                                 matriz[0][2] = qtd;
                                 cont++; // Faz a contagem de itens cadastrados para mostrar mensagem antes do menu
+                                printf("\nO material foi inserido na matriz. \nVocê poderá consultar a matriz selecionando a opção “5. Consultar a matriz dos cálculos” em nosso menu principal.\n");
                             }
                         }
                     break;
                     case 2: // Telha
-                        if(matriz[1][1] != 0){ // Verifica se o usuário não cadastrou o material
+                        if(matriz[1][1] != 0){ // Verifica se o usuário já cadastrou o material
                             printf("\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
                             printf("\n\n\t\t\t\tERRO!!");
-                            printf("\nVocê não pode atualizar um material que ainda não foi cadastrado!\n");
+                            printf("\nEsse material já foi cadastrado!\nVocê pode alterar o material selecionando a opção 3 no menu.\n");
                             printf("\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n");
                         } else{
-                            printf("\n\n>> Qual o tipo de telha que você deseja?");
+                            printf("\n\nO tamanho de uma telha varia de acordo com o seu tipo. Para que nosso cálculo seja mais assertivo, informe qual tipo de telha você pretende utilizar na construção do cômodo.");
+                            printf("\n\n>> Qual dos tipos de telha você deseja utilizar?");
                             printf("\n1- Colonial,");
                             printf("\n2- Portuguesa,");
                             printf("\n3- Brasilit,");
-                            printf("\nOpção: ");
+                            printf("\nDigite sua opção: ");
                             scanf("%d", &telha);
 
                             if(telha < 1 || telha > 3){ // Confere se o usuário não digitou opção inválida
@@ -122,17 +129,19 @@ int main()
                                 matriz[1][1] = telha;
                                 matriz[1][2] = qtd;
                                 cont++; // Faz a contagem de itens cadastrados para mostrar mensagem antes do menu
+                                printf("\nO material foi inserido na matriz. \nVocê poderá consultar a matriz selecionando a opção “5. Consultar a matriz dos cálculos” em nosso menu principal.\n");
                             }
                         }
                     break;
                     case 3: // Piso
-                        if(matriz[2][1] != 0){ // Verifica se o usuário não cadastrou o material
+                        if(matriz[2][1] != 0){ // Verifica se o usuário já cadastrou o material
                             printf("\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
                             printf("\n\n\t\t\t\tERRO!!");
-                            printf("\nVocê não pode atualizar um material que ainda não foi cadastrado!\n");
+                            printf("\nEsse material já foi cadastrado!\nVocê pode alterar o material selecionando a opção 3 no menu.\n");
                             printf("\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n");
                         } else{
-                            printf("\n\n>> Qual o tipo de piso que você deseja?");
+                            printf("\n\nO tamanho do piso varia de acordo com o seu tipo. Para que nosso cálculo seja mais assertivo, informe qual tipo de piso você pretende utilizar na construção do cômodo.");
+                            printf("\n\n>> Qual dos tipos de piso você deseja utilizar?");
                             printf("\n1- Pocelanato,");
                             printf("\n2- Laminado,");
                             printf("\nOpção: ");
@@ -146,6 +155,7 @@ int main()
                                 matriz[2][1] = piso;
                                 matriz[2][2] = qtd;
                                 cont++; // Faz a contagem de itens cadastrados para mostrar mensagem antes do menu
+                                printf("\nO material foi inserido na matriz. \nVocê poderá consultar a matriz selecionando a opção “5. Consultar a matriz dos cálculos” em nosso menu principal.\n");
                             }
                         }
                     break;
@@ -154,63 +164,71 @@ int main()
                 }
             break;
             case 2: //Remover
-                printf("\n\n>> Selecione o material que deseja remover:");
-                printf("\n1- Tijolo");
-                printf("\n2- Telha");
-                printf("\n3- Piso");
-                printf("\nOpção: ");
-                scanf("%d", &material);
+                if (matriz[0][1] == 0 && matriz[1][1] == 0 && matriz[2][1] == 0) { // Verifica se algum item já foi cadastrado
+                    printf (""); // Volta para o menu, onde haverá um aviso de que nenhum item foi castrado ainda
+                    } else { // Se houver algum item para remover, insere no sub-menu as opções correspondentes
+                        printf("\n\n>> Selecione o material que deseja remover:");
+                        if (matriz[0][1] != 0) //verifca se o item já foi cadastrado
+                        printf("\n1- Tijolo");
+                        if (matriz[1][1] != 0)
+                        printf("\n2- Telha");
+                        if (matriz[2][1] != 0)
+                        printf("\n3- Piso");
+                        printf("\nOpção: ");
+                        scanf("%d", &material);
 
-                switch (material){
-                    case 1: // zera os valores da primeira linha, a qual corresponde ao tijolo
-                        if (matriz[0][1] != 0){ // Verifica se o usuário já cadastrou o material que deseja remover
-                            for (i = 0; i < 1; i++){
-                                for (j = 1; j < 3; j++){
-                                    matriz[i][j] = 0;
+                        switch (material){
+                            case 1: // zera os valores da primeira linha, a qual corresponde ao tijolo
+                                if (matriz[0][1] != 0){ // Verifica se o usuário já cadastrou o material que deseja remover
+                                    for (i = 0; i < 1; i++){
+                                        for (j = 1; j < 3; j++){
+                                            matriz[i][j] = 0;
+                                        }
+                                    }
+                                    cont--; // Tira da um item contagem de itens cadastrados para mostrar mensagem antes do menu
+                                    printf("\n\nTijolo removido com sucesso!\n\n");
+                                } else{
+                                    printf("\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                                    printf("\n\n\t\t\t\tERRO!!");
+                                    printf("\nVocê não pode remover um material que ainda não foi cadastrado!\n");
+                                    printf("\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n");
                                 }
-                            }
-                            cont--; // Tira da um item contagem de itens cadastrados para mostrar mensagem antes do menu
-                            printf("\n\nTijolo removido com sucesso!\n\n");
-                        } else{
-                            printf("\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                            printf("\n\n\t\t\t\tERRO!!");
-                            printf("\nVocê não pode remover um material que ainda não foi cadastrado!\n");
-                            printf("\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n");
-                        }
-                    break;
-                    case 2: //zera os valores da segunda linha, a qual corresponde a telha
-                        if (matriz[1][1] != 0) { // Verifica se o usuário já cadastrou o material que deseja remover
-                            for (i = 1; i < 2; i++){
-                                for (j = 1; j < 3; j++){
-                                    matriz[i][j] = 0;
+                            break;
+                            case 2: //zera os valores da segunda linha, a qual corresponde a telha
+                                if (matriz[1][1] != 0) { // Verifica se o usuário já cadastrou o material que deseja remover
+                                    for (i = 1; i < 2; i++){
+                                        for (j = 1; j < 3; j++){
+                                            matriz[i][j] = 0;
+                                        }
+                                    }
+                                    cont--; // Tira da um item contagem de itens cadastrados para mostrar mensagem antes do menu
+                                    printf("\n\nTelha removida com sucesso!\n\n");
+                                } else {
+                                    printf("\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                                    printf("\n\n\t\t\t\tERRO!!");
+                                    printf("\nVocê não pode remover um material que ainda não foi cadastrado!\n");
+                                    printf("\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n");
                                 }
-                            }
-                            cont--; // Tira da um item contagem de itens cadastrados para mostrar mensagem antes do menu
-                            printf("\n\nTelha removida com sucesso!\n\n");
-                        } else {
-                            printf("\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                            printf("\n\n\t\t\t\tERRO!!");
-                            printf("\nVocê não pode remover um material que ainda não foi cadastrado!\n");
-                            printf("\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n");
-                        }
-                    break;
-                    case 3: //zera os valores da terceira linha, a qual corresponde ao piso
-                        if (matriz[1][2] != 0){ // Verifica se o usuário já cadastrou o material que deseja remover
-                            for (i = 2; i < 3; i++) {
-                                for (j = 1; j < 3; j++){
-                                        matriz[i][j] =0;
+                            break;
+                            case 3: //zera os valores da terceira linha, a qual corresponde ao piso
+                                if (matriz[2][1] != 0){ // Verifica se o usuário já cadastrou o material que deseja remover
+                                    for (i = 2; i < 3; i++) {
+                                        for (j = 1; j < 3; j++){
+                                                matriz[i][j] =0;
+                                        }
+                                    }
+                                    cont--; // Tira da um item contagem de itens cadastrados para mostrar mensagem antes do menu
+                                    printf("\n\nPiso removido com sucesso!\n\n");
+                                } else {
+                                    printf("\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                                    printf("\n\n\t\t\t\tERRO!!");
+                                    printf("\nVocê não pode remover um material que ainda não foi cadastrado!\n");
+                                    printf("\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n");
                                 }
-                            }
-                            cont--; // Tira da um item contagem de itens cadastrados para mostrar mensagem antes do menu
-                            printf("\n\nPiso removido com sucesso!\n\n");
-                        } else {
-                            printf("\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-                            printf("\n\n\t\t\t\tERRO!!");
-                            printf("\nVocê não pode remover um material que ainda não foi cadastrado!\n");
-                            printf("\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n");
+                            break;
                         }
-                    break;
-                }
+                    }
+
             break;
             case 3: //Alterar material
                 printf("\n\n>> Qual material você deseja alterar?");
@@ -340,16 +358,16 @@ int main()
             printf("\nDigite 1 para inserir algum tipo de material!\n");
         } else{
             printf("\n>> Você já cadastrou ");
-            if(matriz[1][0] != 0){
+            if(matriz[0][1] != 0){
                 printf("o tipo de tijolo, ");
             }
             if(matriz[1][1] != 0){
                 printf("o tipo de telha, ");
             }
-            if(matriz[2][2] != 0){
+            if(matriz[2][1] != 0){
                 printf("o tipo de piso, ");
             }
-            printf("mas ainda falta cadastrar material!\n");
+            printf("mas ainda pode inserir mais informações!\n");
         }
 
         printf("\n----------------------------------------------------------------------------------------------------------------");
@@ -429,6 +447,8 @@ void imprimirMatriz(float M[][C], float m2)
                 printf("     Estrutural    ");
             else if (M[i][1] == 3)
                 printf(" Bloco de concreto ");
+            else
+                printf("  Não cadastrado   ");
 
             // Mostra a quantidade cálculada no programa
             printf("|     %.0f    ", M[i][2]);
@@ -444,6 +464,8 @@ void imprimirMatriz(float M[][C], float m2)
                 printf("    Portuguesa     ");
             else if (M[i][1] == 3)
                 printf("     Brasilit      ");
+            else
+                printf("  Não cadastrado   ");
 
             // Mostra a quantidade cálculada no programa
             printf("|     %.0f    ", M[i][2]);
@@ -456,6 +478,8 @@ void imprimirMatriz(float M[][C], float m2)
                 printf("    Porcelanato    ");
             else if (M[i][1] == 2)
                 printf("     Laminado      ");
+            else
+                printf("  Não cadastrado   ");
 
             // Mostra a quantidade cálculada no programa
             printf("|     %.0f     ", M[i][2]);
